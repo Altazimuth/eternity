@@ -240,12 +240,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\source\acs_acs0.cpp">
-      <Filter>Source Files\ACS_</Filter>
-    </ClCompile>
-    <ClCompile Include="..\source\acs_acse.cpp">
-      <Filter>Source Files\ACS_</Filter>
-    </ClCompile>
     <ClCompile Include="..\source\acs_func.cpp">
       <Filter>Source Files\ACS_</Filter>
     </ClCompile>
