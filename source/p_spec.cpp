@@ -1301,7 +1301,9 @@ void P_SpawnSpecials()
       case EV_STATIC_3DMIDTEX_ATTACH_CEILING:
          P_AttachLines(&lines[i], true);
          break;
-
+      case EV_STATIC_3DMIDTEX_ATTACH_SECTOR_PARAM:
+         P_AttachLines(&lines[i], lines[i].args[2]);
+         break;
          // SoM 12/10/03: added skybox/portal specials
          // haleyjd 01/24/04: functionalized code to reduce footprint
       case EV_STATIC_PORTAL_PLANE_CEILING:
@@ -1979,6 +1981,7 @@ void P_AttachLines(const line_t *cline, bool ceiling)
       cline->frontsector->c_numattached = 0;
       Z_Free(cline->frontsector->c_attsectors);
    }
+   
 
    // Search the lines list. Check for every tagged line that
    // has the 3dmidtex lineflag, then add the line to the attached list.
@@ -1991,6 +1994,43 @@ void P_AttachLines(const line_t *cline, bool ceiling)
          if(!line->frontsector || !line->backsector ||
             !(line->flags & ML_3DMIDTEX))
             continue;
+         
+         if(EV_IsParamStaticInit(cline->special))
+         {
+            // These exist to make code more readable
+            const int lineid = cline->args[0];
+            const int tag = cline->args[1];
+            // If tag and line id are both zero (mapper screwed up)
+            if(!lineid && !tag)
+            {
+               continue;
+            }
+            // If tag is 0 and line id is not
+            else if(tag && !lineid)
+            {
+               // Let through only the lines which match the id
+               if(line->tag != lineid)
+                  continue;
+            }
+            // If line id is 0 and tag is not
+            else if(lineid && !tag)
+            {
+               // Let through only lines bordering sectors with the matching tag
+               if(line->frontsector->tag != tag &&
+                  line->backsector->tag != tag)
+                  continue;
+            }
+            // line id and tag are non-zero
+            else
+            {
+               // Let through only the lines bordering sectors with the matching tag
+               // and which match the id
+               if(line->tag != lineid||
+                  line->frontsector->tag != tag &&
+                  line->backsector->tag != tag)
+                  continue;
+            }
+         }
 
          for(i = 0; i < numattach;i++)
          {
