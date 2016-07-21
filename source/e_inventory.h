@@ -77,6 +77,16 @@ typedef int artitype_t;
 #define ITEMNAME_SILVERSHIELD  "SilverShield"
 #define ITEMNAME_ENCHANTEDSHLD "EnchantedShield"
 #define ITEMNAME_ARMORBONUS    "ArmorBonus"
+#define ITEMNAME_BERZERKBOX    "BerzerkBox"
+#define ITEMNAME_COMPUTERMAP   "ComputerMap"
+#define ITEMNAME_INVISISPHERE  "InvisiSphere"
+#define ITEMNAME_INVULNSPHERE  "InvulnSphere"
+#define ITEMNAME_LIGHTAMPVISOR "LightAmpVisor"
+#define ITEMNAME_RADIATIONSUIT "RadiationSuit"
+#define ITEMNAME_TOTALINVIS    "ETCTotalInvisiSphere"
+#define ARTI_SHADOWSPHERE      "HArtiInvisibility"
+#define ARTI_WINGSOFWRATH      "HArtiFly"
+#define ART_TORCH              "HArtiTorch"
 
 // Hard-coded names for specially treated artifact types
 #define ARTI_BACKPACKITEM "BackpackItem"

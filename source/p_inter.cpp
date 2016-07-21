@@ -39,6 +39,7 @@
 #include "dstrings.h"
 #include "e_edf.h"
 #include "e_inventory.h"
+#include "e_lib.h"
 #include "e_metastate.h"
 #include "e_mod.h"
 #include "e_states.h"
@@ -352,29 +353,38 @@ void P_GiveCard(player_t *player, itemeffect_t *card)
   NUMPOWERS
 */
 
+static const char *powerStrings[] =
+{
+   ITEMNAME_INVULNSPHERE,
+   ITEMNAME_BERZERKBOX,
+   ITEMNAME_INVISISPHERE,
+   ITEMNAME_RADIATIONSUIT,
+   ITEMNAME_COMPUTERMAP,
+   ITEMNAME_LIGHTAMPVISOR,
+   ITEMNAME_TOTALINVIS,
+   ARTI_SHADOWSPHERE,
+   "", // Silencer: Only available via cheating
+   ARTI_WINGSOFWRATH,
+   ART_TORCH
+};
+
 //
 // P_GivePower
 //
 // Rewritten by Lee Killough
 //
-bool P_GivePower(player_t *player, int power)
+bool P_GivePower(player_t *player, itemeffect_t *power)
 {
-   static const int tics[NUMPOWERS] = 
-   {
-      INVULNTICS,
-      1,          // strength 
-      INVISTICS,
-      IRONTICS, 
-      1,          // allmap 
-      INFRATICS,
-      INVISTICS,  // haleyjd: totalinvis
-      INVISTICS,  // haleyjd: ghost 
-      1,          // haleyjd: silencer 
-      FLIGHTTICS, // haleyjd: flight
-      INFRATICS,  // haleyjd: torch
-   };
+   const char *powerStr = power->getConstString("type", "");
+   int duration = power->getInt("duration", 0);
+   int powerNum = E_StrToNumLinear(powerStrings, NUMPOWERS, powerStr);
 
-   switch(power)
+   if(power->getInt("persistentpower", 0))
+      duration = 1;
+   else
+      duration *= TICRATE; // The duration
+
+   switch(powerNum)
    {
    case pw_invisibility:
       player->mo->flags |= MF_SHADOW;
@@ -404,8 +414,8 @@ bool P_GivePower(player_t *player, int power)
    }
 
    // Unless player has infinite duration cheat, set duration (killough)   
-   if(player->powers[power] >= 0)
-      player->powers[power] = tics[power];
+   if(player->powers[powerNum] >= 0)
+      player->powers[powerNum] = duration;
 
    return true;
 }
@@ -725,7 +735,8 @@ void P_TouchSpecialThing(Mobj *special, Mobj *toucher)
 
       // power ups
    case PFX_INVULNSPHERE:
-      if(!P_GivePower(player, pw_invulnerability))
+      effect = E_ItemEffectForName(ITEMNAME_INVULNSPHERE);
+      if(!P_GivePower(player, effect)) // pw_invulnerability
          return;
       message = DEH_String("GOTINVUL"); // Ty 03/22/98 - externalized
       sound = sfx_getpow;
@@ -733,7 +744,8 @@ void P_TouchSpecialThing(Mobj *special, Mobj *toucher)
 
       // WEAPON_FIXME: berserk changes to fist
    case PFX_BERZERKBOX:
-      if(!P_GivePower(player, pw_strength))
+      effect = E_ItemEffectForName(ITEMNAME_BERZERKBOX);
+      if(!P_GivePower(player, effect)) // pw_strength
          return;
       message = DEH_String("GOTBERSERK"); // Ty 03/22/98 - externalized
       if(player->readyweapon != wp_fist)
@@ -743,28 +755,32 @@ void P_TouchSpecialThing(Mobj *special, Mobj *toucher)
       break;
 
    case PFX_INVISISPHERE:
-      if(!P_GivePower(player, pw_invisibility))
+      effect = E_ItemEffectForName(ITEMNAME_INVISISPHERE);
+      if(!P_GivePower(player, effect)) // pw_invisibility
          return;
       message = DEH_String("GOTINVIS"); // Ty 03/22/98 - externalized
       sound = sfx_getpow;
       break;
 
    case PFX_RADSUIT:
-      if(!P_GivePower(player, pw_ironfeet))
+      effect = E_ItemEffectForName(ITEMNAME_RADIATIONSUIT);
+      if(!P_GivePower(player, effect)) // pw_ironfeet
          return;
       message = DEH_String("GOTSUIT"); // Ty 03/22/98 - externalized
       sound = sfx_getpow;
       break;
 
    case PFX_ALLMAP:
-      if(!P_GivePower(player, pw_allmap))
+      effect = E_ItemEffectForName(ITEMNAME_COMPUTERMAP);
+      if(!P_GivePower(player, effect)) // pw_allmap
          return;
       message = DEH_String("GOTMAP"); // Ty 03/22/98 - externalized
       sound = sfx_getpow;
       break;
 
    case PFX_LIGHTAMP:
-      if(!P_GivePower(player, pw_infrared))
+      effect = E_ItemEffectForName(ITEMNAME_LIGHTAMPVISOR);
+      if(!P_GivePower(player, effect)) // pw_infrared
          return;
       sound = sfx_getpow;
       message = DEH_String("GOTVISOR"); // Ty 03/22/98 - externalized
@@ -955,7 +971,8 @@ void P_TouchSpecialThing(Mobj *special, Mobj *toucher)
       break;
 
    case PFX_HMAP: // map scroll
-      if(!P_GivePower(player, pw_allmap))
+      effect = E_ItemEffectForName(ITEMNAME_COMPUTERMAP);
+      if(!P_GivePower(player, effect)) // pw_allmap
          return;
       message = DEH_String("HITEMSUPERMAP");
       sound = sfx_hitemup;
@@ -1036,7 +1053,8 @@ void P_TouchSpecialThing(Mobj *special, Mobj *toucher)
 
       // start new Eternity power-ups
    case PFX_TOTALINVIS:
-      if(!P_GivePower(player, pw_totalinvis))
+      effect = E_ItemEffectForName(ITEMNAME_TOTALINVIS);
+      if(!P_GivePower(player, effect)) // pw_totalinvis
          return;
       message = "Total Invisibility!";
       sound = sfx_getpow;
