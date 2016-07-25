@@ -35,6 +35,9 @@
 
 class MetaTable;
 
+extern inventoryindex_t e_maxvisiblesortorder;
+//extern inventoryindex_t e_minvisiblesortorder;
+
 // Effect Types
 enum
 {
@@ -218,6 +221,12 @@ bool E_PlayerCanUnlock(player_t *player, int lockID, bool remote);
 
 // Get the automap color for a lockdef
 int E_GetLockDefColor(int lockID);
+
+// Tries to move the inventory cursor 'amount' right.
+void E_MoveInventoryCursor(player_t *player, int amount);
+
+// Tries to use the currently selected item.
+void E_TryUseItem(player_t *player);
 
 // Obtain an item effect definition for its inventory item ID
 itemeffect_t *E_EffectForInventoryItemID(inventoryitemid_t id);
