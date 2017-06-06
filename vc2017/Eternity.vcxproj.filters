@@ -235,6 +235,15 @@
     <Filter Include="Source Files\XL_\XL_ Source">
       <UniqueIdentifier>{09ccd1ab-91bb-4216-9ff4-c314b45f28c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Vk_">
+      <UniqueIdentifier>{cb2c8b4d-376a-40d2-853d-a9d7222ba917}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Vk_\Vk_ Headers">
+      <UniqueIdentifier>{567e4135-329e-4fbb-97c1-be0f6a3606cd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Vk_\Vk_ Source">
+      <UniqueIdentifier>{bcddeee6-a787-49c2-bae9-eacd5fbb1c20}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\acs_func.cpp">
@@ -965,6 +974,24 @@
     </ClCompile>
     <ClCompile Include="..\source\s_musinfo.cpp">
       <Filter>Source Files\S_\S_ Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\sdl\i_sdlvk2d.cpp">
+      <Filter>Source Files\SDL\SDL Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\vk\vk_vars.cpp">
+      <Filter>Source Files\Vk_\Vk_ Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\vk\vk_texture.cpp">
+      <Filter>Source Files\Vk_\Vk_ Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\vk\vk_init.cpp">
+      <Filter>Source Files\Vk_\Vk_ Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\vk\vk_primitives.cpp">
+      <Filter>Source Files\Vk_\Vk_ Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\vk\vk_projection.cpp">
+      <Filter>Source Files\Vk_\Vk_ Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1720,6 +1747,27 @@
     </ClInclude>
     <ClInclude Include="..\source\s_musinfo.h">
       <Filter>Source Files\S_\S_ Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\sdl\i_sdlvk2d.h">
+      <Filter>Source Files\SDL\SDL Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\vk\vk_includes.h">
+      <Filter>Source Files\Vk_\Vk_ Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\vk\vk_vars.h">
+      <Filter>Source Files\Vk_\Vk_ Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\vk\vk_primitives.h">
+      <Filter>Source Files\Vk_\Vk_ Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\vk\vk_projection.h">
+      <Filter>Source Files\Vk_\Vk_ Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\vk\vk_texture.h">
+      <Filter>Source Files\Vk_\Vk_ Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\vk\vk_init.h">
+      <Filter>Source Files\Vk_\Vk_ Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
