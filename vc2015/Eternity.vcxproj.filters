@@ -990,6 +990,9 @@
     <ClCompile Include="..\source\vk\vk_projection.cpp">
       <Filter>Source Files\Vk_\Vk_ Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\sdl\i_sdlvk2d.cpp">
+      <Filter>Source Files\SDL\SDL Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\acs_intr.h">
@@ -1762,6 +1765,9 @@
     </ClInclude>
     <ClInclude Include="..\source\vk\vk_vars.h">
       <Filter>Source Files\Vk_\Vk_ Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\sdl\i_sdlvk2d.h">
+      <Filter>Source Files\SDL\SDL Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
