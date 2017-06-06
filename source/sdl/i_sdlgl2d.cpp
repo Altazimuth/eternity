@@ -433,26 +433,6 @@ void SDLGL2DVideoDriver::LoadPBOExtension()
 
 // Config-to-GL enumeration lookups
 
-// Configurable internal texture formats
-static GLint internalTextureFormats[CFG_GL_NUMTEXFORMATS] =
-{
-   GL_R3_G3_B2,
-   GL_RGB4,
-   GL_RGB5,
-   GL_RGB8,
-   GL_RGB10,
-   GL_RGB12,
-   GL_RGB16,
-   GL_RGBA2,
-   GL_RGBA4,
-   GL_RGB5_A1,
-   GL_RGBA8,
-   GL_RGB10_A2,
-   GL_RGBA12,
-   GL_RGBA16
-   
-};
-
 // Configurable texture filtering parameters
 static GLint textureFilterParams[CFG_GL_NUMFILTERS] =
 {
@@ -490,10 +470,6 @@ bool SDLGL2DVideoDriver::InitGraphicsMode()
       colordepth = 32;
       break;
    }
-
-   // Allow end-user GL internal texture format specification
-   if(cfg_gl_texture_format >= 0 && cfg_gl_texture_format < CFG_GL_NUMTEXFORMATS)
-      texformat = internalTextureFormats[cfg_gl_texture_format];
 
    // Allow end-user GL texture filtering specification
    if(cfg_gl_filter_type >= 0 && cfg_gl_filter_type < CFG_GL_NUMFILTERS)
