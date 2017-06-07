@@ -26,6 +26,28 @@
 
 #include "vk_includes.h"
 
+//
+// VK_SetOrthoMode
+//
+// Changes to a 2D orthogonal projection.
+//
+void VK_SetOrthoMode(int w, int h)
+{
+#if 0
+   // Clear model-view matrix
+   glMatrixMode(GL_MODELVIEW);
+   glLoadIdentity();
+
+   // Set projection matrix to a standard orthogonal projection
+   glMatrixMode(GL_PROJECTION);
+   glLoadIdentity();
+   glOrtho(0.0, (GLdouble)w, (GLdouble)h, 0.0, -1.0, 1.0);
+
+   // Disable depth buffer test
+   glDisable(GL_DEPTH_TEST);
+#endif
+}
+
 #endif
 
 // EOF

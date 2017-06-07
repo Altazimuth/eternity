@@ -27,8 +27,10 @@
 
 #ifdef EE_FEATURE_VULKAN
 
-// TODO: Stuff
-
+unsigned int VK_MakeTextureDimension(unsigned int i);
+void VK_BindTextureAndRemember(unsigned int texture);
+void VK_BindTextureIfNeeded(unsigned int texture);
+void VK_ClearBoundTexture();
 #endif
 
 #endif

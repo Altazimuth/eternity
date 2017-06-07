@@ -27,6 +27,46 @@
 #include "vk_includes.h"
 #include "vk_primitives.h"
 
+//
+// VK_OrthoQuadTextured
+//
+// Push a textured quad of size (w, h) at upper-left-hand coordinate (x, y) with
+// texture coordinates starting from the (x, y) corner. Intended for use in an
+// ortho projection. Bind texture beforehand and call glBegin(GL_QUADS).
+// 
+void VK_OrthoQuadTextured(float x, float y, float w, float h,
+                          float smax, float tmax)
+{
+#if 0
+   glTexCoord2f(0.0f, 0.0f);
+   glVertex2f(x, y);
+   glTexCoord2f(0.0f, tmax);     
+   glVertex2f(x, y + h);
+   glTexCoord2f(smax, tmax);
+   glVertex2f(x + w, y + h);
+   glTexCoord2f(smax, 0.0f);
+   glVertex2f(x + w, y);
+#endif
+}
+
+//
+// VK_OrthoQuadFlat
+//
+// Push a flat shaded quad of size (w, h) at upper-left-hand coordinate (x, y)
+// with all vertices colored as specified by the (r,g,b) parameters.
+//
+void VK_OrthoQuadFlat(float x, float y, float w, float h,
+                      float r, float b, float g)
+{
+#if 0
+   glColor3f(r, g, b);
+   glVertex2f(x,     y);
+   glVertex2f(x,     y + h);
+   glVertex2f(x + w, y + h);
+   glVertex2f(x + w, y);
+#endif
+}
+
 #endif
 
 // EOF

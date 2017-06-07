@@ -27,7 +27,11 @@
 
 #ifdef EE_FEATURE_VULKAN
 
-// TODO: Stuff
+void VK_OrthoQuadTextured(float x, float y, float w, float h,
+                          float smax, float tmax);
+
+void VK_OrthoQuadFlat(float x, float y, float w, float h,
+                      float r, float b, float g);
 
 #endif
 

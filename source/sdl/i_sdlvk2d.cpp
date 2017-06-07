@@ -22,11 +22,14 @@
 // Authors: Max Waine
 //
 
-#include <vulkan/vulkan.hpp>
 #ifdef EE_FEATURE_VULKAN
+
+// Vulkan header
+#include <vulkan/vulkan.hpp>
 
 // SDL headers
 #include "SDL.h"
+// #include "SDL_syswm.h"
 
 // DOOM headers
 #include "../z_zone.h"
@@ -70,7 +73,7 @@ static SDL_Surface *screen;
 static Uint32 RGB8to32[256];
 static byte   cachedpal[768];
 
-// GL texture sizes sufficient to hold the screen buffer as a texture
+// Vulkan texture sizes sufficient to hold the screen buffer as a texture
 static unsigned int framebuffer_umax;
 static unsigned int framebuffer_vmax;
 static unsigned int texturesize;
@@ -79,7 +82,7 @@ static unsigned int texturesize;
 static float texcoord_smax;
 static float texcoord_tmax;
 
-// GL texture names
+// Vulkan texture names
 static unsigned int textureid;
 
 // Framebuffer texture data
@@ -207,7 +210,7 @@ void SDLVk2DVideoDriver::FinishUpdate()
    {
       static int pboindex  = 0;
       int        nextindex = 0;
-      GLvoid    *ptr       = NULL;
+      void      *ptr       = NULL;
 
       // use the two pixel buffers in a rotation
       pboindex  = (pboindex + 1) % 2;
@@ -403,7 +406,7 @@ void SDLVk2DVideoDriver::ShutdownGraphicsPartway()
 //
 void SDLVk2DVideoDriver::LoadPBOExtension()
 {
-#if 0 // FIXME: THIS. THIS SO MUCH. ALL OF THIS. THIS ONE ESPECIALLY. AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+#if 0 // FIXME: THIS. THIS SO MUCH. ALL OF THIS. THIS ONE ESPECIALLY. AAAAAAAAAAAAAAAAAAAAAAAA
    static bool firsttime = true;
    bool extension_ok = true;
    const char *extensions = (const char *)glGetString(GL_EXTENSIONS);
@@ -440,7 +443,7 @@ void SDLVk2DVideoDriver::LoadPBOExtension()
 #endif
 }
 
-// Config-to-GL enumeration lookups
+// Config-to-Vulkan enumeration lookups
 
 // Configurable texture filtering parameters
 static VkFilter textureFilterParams[CFG_VK_NUMFILTERS] =
@@ -455,14 +458,13 @@ static VkFilter textureFilterParams[CFG_VK_NUMFILTERS] =
 //
 bool SDLVk2DVideoDriver::InitGraphicsMode()
 {
-#if 0 // FIXME: This
    bool     wantfullscreen = false;
    bool     wantvsync      = false;
    bool     wanthardware   = false; // Not used - this is always "hardware".
    bool     wantframe      = true;
    int      v_w            = 640;
    int      v_h            = 480;
-   int      flags          = SDL_OPENGL;
+   int      flags          = SDL_HWSURFACE;
    void    *tempbuffer     = nullptr;
    VkFormat texformat      = VK_FORMAT_R8G8B8A8_UNORM;
    VkFilter texfiltertype  = VK_FILTER_LINEAR;
@@ -505,6 +507,7 @@ bool SDLVk2DVideoDriver::InitGraphicsMode()
    if(!wantframe)
       flags |= SDL_NOFRAME;
    
+#if 0 // FIXME: This
    // Set GL attributes through SDL
    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
    SDL_GL_SetAttribute(SDL_GL_RED_SIZE,   colordepth >= 24 ? 8 : 5);
@@ -512,17 +515,22 @@ bool SDLVk2DVideoDriver::InitGraphicsMode()
    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE,  colordepth >= 24 ? 8 : 5);
    SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, colordepth == 32 ? 8 : 0);
    SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, wantvsync ? 1 : 0); // OMG vsync!
+#endif
 
-   // Set GL video mode
+
+   // Set Vulkan video mode
    if(!(surface = SDL_SetVideoMode(v_w, v_h, colordepth, flags)))
    {
-      I_FatalError(I_ERR_KILL, "Couldn't set OpenGL video mode %dx%dx%d\n", 
+      I_FatalError(I_ERR_KILL, "Couldn't set Vulkan video mode %dx%dx%d\n", 
                    v_w, v_h, colordepth);
    }
-
+   
    // Try loading the ARB PBO extension
    LoadPBOExtension();
 
+   SDL_SysWMinfo  
+
+#if 0
    // Enable two-dimensional texture mapping
    glEnable(GL_TEXTURE_2D);
 

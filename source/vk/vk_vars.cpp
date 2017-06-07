@@ -28,5 +28,28 @@
 
 #include "vk_vars.h"
 
+// NB: These variables exist even if EE_FEATURE_VULKAN is disabled.
+
+int  cfg_vk_colordepth;      // colordepth of Vulkan video mode
+int  cfg_vk_filter_type;     // texture filtering type
+int  cfg_vk_texture_format;  // texture internal format
+bool cfg_vk_use_extensions;  // must be true for extensions to be used
+bool cfg_vk_arb_pixelbuffer; // enable ARB PBO extension
+
+VARIABLE_INT(cfg_vk_colordepth, NULL, 16, 32, NULL);
+CONSOLE_VARIABLE(vk_colordepth, cfg_vk_colordepth, 0) {}
+
+static const char *vk_filter_names[] = { "VK_LINEAR", "VK_NEAREST", "VK_CUBIC" };
+
+VARIABLE_INT(cfg_vk_filter_type, NULL, CFG_VK_LINEAR, CFG_VK_CUBIC, vk_filter_names);
+CONSOLE_VARIABLE(vk_filter_type, cfg_vk_filter_type, 0) {}
+
+VARIABLE_TOGGLE(cfg_vk_use_extensions, NULL, yesno);
+CONSOLE_VARIABLE(vk_use_extensions, cfg_vk_use_extensions, 0) {}
+
+VARIABLE_TOGGLE(cfg_vk_arb_pixelbuffer, NULL, yesno);
+CONSOLE_VARIABLE(vk_arb_pixelbuffer, cfg_vk_arb_pixelbuffer, 0) {}
+
+
 // EOF
 

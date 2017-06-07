@@ -29,6 +29,29 @@
 #include "vk_includes.h"
 #include "vk_init.h"
 
+//=============================================================================
+//
+// Globals
+//
+
+// Active loaded version of OpenGL
+VK_versioninfo VK_version;
+
+//=============================================================================
+//
+// Routines
+//
+
+//
+// GL_GetVersion
+//
+// Retrieves the version of OpenGL that is active.
+//
+void VK_GetVersion()
+{
+}
+
+
 #endif
 
 // EOF

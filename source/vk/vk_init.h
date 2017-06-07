@@ -28,7 +28,19 @@
 
 #ifdef EE_FEATURE_VULKAN
 
-// TODO: Various stuff
+//
+// VK_versioninfo
+//
+// Structure holds Vulkan version information
+//
+
+#define VK_VER_MAJ_SHIFT 22
+#define VK_VER_MIN_SHIFT 12
+#define VK_VER_PATCH_SHIFT
+
+typedef int VK_versioninfo;
+
+extern VK_versioninfo VK_version;
 
 #endif
 
