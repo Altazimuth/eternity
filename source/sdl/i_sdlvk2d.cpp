@@ -528,8 +528,6 @@ bool SDLVk2DVideoDriver::InitGraphicsMode()
    // Try loading the ARB PBO extension
    LoadPBOExtension();
 
-   SDL_SysWMinfo  
-
 #if 0
    // Enable two-dimensional texture mapping
    glEnable(GL_TEXTURE_2D);
