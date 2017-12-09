@@ -235,6 +235,15 @@
     <Filter Include="Source Files\XL_\XL_ Source">
       <UniqueIdentifier>{09ccd1ab-91bb-4216-9ff4-c314b45f28c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Imgui">
+      <UniqueIdentifier>{cf9b9dc0-6afc-408c-9589-a89dfdbe75b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Imgui\Imgui Source">
+      <UniqueIdentifier>{2d93ad8d-c6a8-4c00-bc4c-7d30dbc18b17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Imgui\Imgui Headers">
+      <UniqueIdentifier>{6750681b-5732-4b2a-bf6b-e2493bb55d6f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\acs_func.cpp">
@@ -986,6 +995,15 @@
     </ClCompile>
     <ClCompile Include="..\source\e_switch.cpp">
       <Filter>Source Files\E_\E_ Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\imgui\imgui_draw.cpp">
+      <Filter>Source Files\Imgui\Imgui Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\imgui\imgui.cpp">
+      <Filter>Source Files\Imgui\Imgui Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\imgui\imgui_demo.cpp">
+      <Filter>Source Files\Imgui\Imgui Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1753,6 +1771,24 @@
     </ClInclude>
     <ClInclude Include="..\source\e_switch.h">
       <Filter>Source Files\E_\E_ Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\imconfig.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\imgui.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\imgui_internal.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\stb_rect_pack.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\stb_textedit.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\stb_truetype.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

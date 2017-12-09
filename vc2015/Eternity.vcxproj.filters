@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -234,6 +234,15 @@
     </Filter>
     <Filter Include="Source Files\XL_\XL_ Source">
       <UniqueIdentifier>{09ccd1ab-91bb-4216-9ff4-c314b45f28c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Imgui">
+      <UniqueIdentifier>{49d82d4f-1adb-4278-97d6-62daedbad06e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Imgui\Imgui Headers">
+      <UniqueIdentifier>{9e0a5fd7-5ba4-4829-bea4-fa8726533346}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Imgui\Imgui Source">
+      <UniqueIdentifier>{91d38bd5-3cae-4b77-b8fd-3963beec058e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -986,6 +995,15 @@
     </ClCompile>
     <ClCompile Include="..\source\e_anim.cpp">
       <Filter>Source Files\E_\E_ Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\imgui\imgui.cpp">
+      <Filter>Source Files\Imgui\Imgui Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\imgui\imgui_demo.cpp">
+      <Filter>Source Files\Imgui\Imgui Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\imgui\imgui_draw.cpp">
+      <Filter>Source Files\Imgui\Imgui Source</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -1753,6 +1771,24 @@
     </ClInclude>
     <ClInclude Include="..\source\e_anim.h">
       <Filter>Source Files\E_\E_ Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\imconfig.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\imgui.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\imgui_internal.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\stb_rect_pack.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\stb_textedit.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\imgui\stb_truetype.h">
+      <Filter>Source Files\Imgui\Imgui Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
